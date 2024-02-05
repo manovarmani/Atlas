@@ -1,0 +1,359 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Template for lab reports used at STIMA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sets the document class for the document
+% Openany is added to remove the book style of starting every new chapter on an odd page (not needed for reports)
+\documentclass[10pt,swedish, openany]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Loading packages that alter the style
+\usepackage[]{graphicx}
+\usepackage[]{color}
+\usepackage{alltt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tcolorbox}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+
+% Set page margins
+\usepackage[top=90pt,bottom=100pt,left=68pt,right=66pt]{geometry}
+
+% Package used for placeholder text
+\usepackage{lipsum}
+
+% Prevents LaTeX from filling out a page to the bottom
+\raggedbottom
+
+% Adding both languages, Swedish and English, so they can be used intermittently in for example abstracts.
+\usepackage[swedish, english]{babel}
+
+% All page numbers positioned at the bottom of the page
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\pagestyle{fancy}
+
+% Changes the style of chapter headings
+\usepackage{titlesec}
+\titleformat{\chapter}
+   {\normalfont\LARGE\bfseries}{\thechapter.}{1em}{}
+% Change distance between chapter header and text
+\titlespacing{\chapter}{0pt}{50pt}{2\baselineskip}
+
+% Adds table captions above the table per default
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
+% Adds space between caption and table
+\usepackage[tableposition=top]{caption}
+
+% Adds hyperlinks to references and ToC
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+            linkcolor = blue} % Changes the link color to black and hides the hideous red border that usually is created
+
+% If multiple images are to be added, a folder (path) with all the images can be added here 
+\graphicspath{ {images/} }
+
+% Separates the first part of the report/thesis in Roman numerals
+\frontmatter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Starts the document
+\begin{document}
+
+%%% Selects the language to be used for the first couple of pages
+\selectlanguage{english}
+
+%%%%% Adds the title page
+\begin{titlepage}
+	\clearpage\thispagestyle{empty}
+	\centering
+	\vspace{2cm}
+
+	% Titles
+	{\large Progress Report \par}
+	\vspace{4cm}
+	{\Huge \textbf{Replication Rerouted: Exploring the Multifaceted Paths of Human Cell Cycles}} \\
+	\vspace{1cm}
+	{\large \textbf{1.01} \par}
+	\vspace{4cm}
+	{\normalsize Armani Manov  \\ % \\ specifies a new line
+	             Wayne Stallaert, Ph.D.  \par}
+	\vspace{2cm}
+
+    \includegraphics[scale=0.35]{images/pitt-upmc-logov1.png}
+    
+    \vspace{2cm}
+    
+	% Information about the University
+	{\normalsize Department of Computational and Systems Biology \\ 
+		University of Pittsburgh School of Medicine \par}
+		
+	% Set the date
+	{\normalsize Week of February 5, 2024 \par}
+	\vspace{2cm}
+	
+	\pagebreak
+
+\end{titlepage}
+
+% Adds a table of contents
+\tableofcontents{}
+
+\clearpage
+
+% Uncomment the following three rows for a table of figures and/or tables as they are not needed for lab reports
+% \listoffigures
+% \clearpage
+% \listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% The rows above should not be changed except for the title page information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Text body starts here!
+\mainmatter
+
+\chapter{Overview}
+
+\begin{itemize}
+    \item \textbf{Segmentation |} MTU391 Cores 1-8 segmented. Find specifications below.
+    
+    \item \textbf{Quantification |} MTU391 Cores 1-8 quantified using AIVIA 13.
+    
+    \item \textbf{Computational Analysis |} Heatmaps of Cell Type X Tumor Microenvironment using CytoCommunity/ATHENA/KasiaMethod
+    
+\end{itemize}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Position & Sex & Age & Anatomic Site & Pathology & Grade & Stage \\
+\hline
+A01 & M & 65 & Bladder, urinary & Normal & - & - \\
+A02 & F & 39 & Bladder, urinary & Transitional cell carcinoma & III & T2N0M0 \\
+A03 & M & 61 & Bladder, urinary & Transitional cell carcinoma & III & T2N0M0 \\
+A04 & F & 34 & Breast & Normal breast & - & - \\
+A05 & F & 43 & Breast & Invasive ductal carcinoma & II & T3N1M0 \\
+A06 & F & 75 & Breast & Invasive ductal carcinoma & III & T3N0M0 \\
+A07 & M & 32 & Stomach & Normal stomach & - & - \\
+A08 & M & 66 & Stomach & Adenocarcinoma & II & T3N0M0 \\
+B01 & M & 47 & Stomach & Adenocarcinoma & III & T3N2M0 \\
+B02 & F & 43 & Intestine, colon & Normal colon & - & - \\
+B03 & M & 36 & Intestine, colon & Adenocarcinoma & III & T3N1M0 \\
+B04 & M & 55 & Intestine, rectum & Adenocarcinoma & I~II & T3N1M0 \\
+B05 & M & 30 & Kidney & Normal kidney cortex & - & - \\
+B06 & F & 79 & Kidney & Clear cell carcinoma & - & T1N0M0 \\
+B07 & M & 72 & Kidney & Clear cell carcinoma & - & T1N0M0 \\
+B08 & M & 35 & Liver & Normal & - & - \\
+C01 & M & 59 & Liver & Hepatocellular carcinoma & II & T3N0M0 \\
+C02 & M & 19 & Liver & Hepatocellular carcinoma & I~II & T2N0M0 \\
+C03 & M & 59 & Lung & Normal & - & - \\
+C04 & M & 58 & Lung & Squamous cell carcinoma & II~III & T2N0M0 \\
+C05 & F & 40 & Lung & Adenocarcinoma & II~III & T2N0M0 \\
+C06 & M & 1.3 & Lymph node & Reactive & - & - \\
+C07 & M & 40 & Lymph node & Lymphoma, Hodgkin lymphoma & - & - \\
+C08 & M & 42 & Lymph node, axillary & Lymphoma, non-Hodgkin B cell lymphoma & - & - \\
+D01 & F & 23 & Ovary & Normal & - & - \\
+D02 & F & 43 & Ovary & Mucinous cystadenocarcinoma & III & T2N0M0 \\
+D03 & F & 58 & Ovary & Endometrioid adenocarcinoma & III & T2N0M0 \\
+D04 & F & 58 & Pancreas & Normal & - & - \\
+D05 & F & 49 & Pancreas & Adenocarcinoma & II & T3N1M1 \\
+D06 & M & 66 & Pancreas & Adenocarcinoma & II~III & T3N0M0 \\
+D07 & M & 73 & Prostate & Normal & - & - \\
+D08 & M & 63 & Prostate & Adenocarcinoma & III & T3N0M0 \\
+E01 & M & 60 & Prostate & Adenocarcinoma & II & T2N0M0 \\
+E02 & M & 53 & Penis & Normal skin & - & - \\
+E03 & M & 34 & Penis & Squamous cell carcinoma & I & T1N0M0 \\
+E04 & M & 73 & Skin & Melanoma & - & - \\
+E05 & F & 46 & Uterus & Normal & - & - \\
+E06 & F & 41 & Uterus, cervix & Squamous cell carcinoma & I~II & T1N1M0 \\
+E07 & F & 53 & Uterus, endometrium & Adenocarcinoma & II~III & T1N1M0 \\
+\hline
+\end{tabular}
+\caption{MTU391 Tissue Microarray}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Position & Sex & Age & Anatomic Site & Pathology \\
+\hline
+A01 & M & 52 & Brain, cerebellum & Normal* \\
+A02 & M & 17 & Intestine, small intestine & Normal \\
+A03 & M & 74 & Lung & Normal \\
+A04 & M & 16 & Pituitary gland & Normal* \\
+A05 & M & 30 & Spleen & Normal spleen \\
+A06 & F & 32 & Umbilical cord & Normal \\
+B01 & M & 52 & Brain, cerebral cortex & Normal* \\
+B02 & M & 32 & Stomach & Normal \\
+B03 & M & 43 & Liver & Normal \\
+B04 & M & 34 & Parathyroid & Adenoma \\
+B05 & M & 16 & Spinal cord & Normal* \\
+B06 & F & 56 & Thyroid & Normal \\
+B07 & M & 6  & Tonsil & Tonsillitis \\
+C01 & M & 16 & Bone, bone marrow & Normal* \\
+C02 & F & 25 & Fallopian tube & Normal \\
+C03 & M & 66 & Kidney & Normal \\
+C04 & M & 55 & Pancreas & Normal* \\
+C05 & F & 32 & Skin & Normal \\
+C06 & M & 13 & Thymus & Normal, hyperplasia \\
+C07 & F & 40 & Uterus, endometrium & Normal endometrium \\
+D01 & M & 68 & Bladder, urinary & Normal \\
+D02 & F & 43 & Breast & Normal \\
+D03 & M & 16 & Heart & Normal* \\
+D04 & F & 44 & Ovary & Normal \\
+D05 & M & 84 & Prostate & Normal \\
+D06 & M & 16 & Testis & Normal* \\
+D07 & F & 34 & Uterus, cervix & Normal cervix \\
+E01 & M & 16 & Adrenal gland & Normal* \\
+E02 & F & 52 & Breast & Normal breast \\
+E03 & M & 75 & Intestine, colon & Normal \\
+E04 & F & 53 & Lymph node & Reactive \\
+E05 & F & 26 & Placenta & Normal \\
+E06 & M & 46 & Skeletal muscle & Normal* \\
+E07 & F & 44 & Ureter & Normal \\
+\hline
+\end{tabular}
+Entries with an asterick (*) represent tissues recovered from autopsy.
+\caption{MNO341 Tissue Microarray}
+\end{table}
+
+
+% Start of R-code chunk where preparatory work can be conducted, for example loading packages and/or data.
+% include = FALSE specifies that nothing will be included in the report, but the code will still run
+<<include = FALSE>>=
+
+@
+
+\chapter{Segmentation}
+% A * after the section/chapter command indicates an unnumbered header which will not be added to the table of contents
+\begin{tabular}{@{}ll}
+NPT & Nucleus Probability Threshold \\
+ND & Nucleus Diameter \\
+MNS & Minimum Nucleus Size \\
+NED & Nucleus Expansion Distance \\
+CMPTD & Cell Membrane Probability Threshold \\
+\end{tabular}
+\section*{MTU391}
+% In order to add an unnumbered section/chapter the following code needs to be used
+\subsection{CORE 1}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c}
+    SPEC & (px) \\
+    \hline
+         NPT & 10 \\
+         ND & 20 \\
+         MNS & 10 \\
+         NED & 3 \\
+         CMPT & 20 \\
+    \hline
+    \end{tabular}
+    \caption{MTU C1 Segmentation Specifications}
+\end{table}
+
+\begin{tcolorbox}[colback=gray!10]
+    \textbf{Notes:} Vimentin (VIM), B-catenin (bCat), and E-cadherin (ECad) was used for cytoplasmic segmentation. No other relevant information.
+\end{tcolorbox}
+
+\subsection{CORE 2}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c}
+    SPEC & (px) \\
+    \hline
+         NPT & 10 \\
+         ND & 15 \\
+         MNS & 30 \\
+         NED & 4 \\
+         CMPT & 30 \\
+    \hline
+    \end{tabular}
+    \caption{MTU C2 Segmentation Specifications}
+\end{table}
+
+
+\begin{tcolorbox}[colback=gray!10]
+    \textbf{Notes:} Vimentin (VIM), B-catenin (bCat), and E-cadherin (ECad) was used for cytoplasmic segmentation. Red blood cells were also present, so these will be excluded from analysis.
+\end{tcolorbox}
+
+
+\subsection{CORE 3}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c}
+    SPEC & (px) \\
+    \hline
+         NPT & 10 \\
+         ND & 25 \\
+         MNS & 30 \\
+         NED & 4 \\
+         CMPT & 50 \\
+    \hline
+    \end{tabular}
+    \caption{MTU C3 Segmentation Specifications}
+\end{table}
+
+
+\begin{tcolorbox}[colback=gray!10]
+    \textbf{Notes:} B-catenin (bCat) and E-cadherin (ECad) was used for cytoplasmic segmentation. There were components of the tissue that had folded, so these cells will be excluded from analysis.
+\end{tcolorbox}
+
+
+
+
+\subsection{CORE 4}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c}
+    SPEC & (px) \\
+    \hline
+         NPT & 10 \\
+         ND & 20 \\
+         MNS & 50 \\
+         NED & 4 \\
+         CMPT & 50 \\
+    \hline
+    \end{tabular}
+    \caption{MTU C4 Segmentation Specifications}
+\end{table}
+
+
+\begin{tcolorbox}[colback=gray!10]
+    \textbf{Notes:} B-catenin (bCat) and E-cadherin (ECad) was used for cytoplasmic segmentation. No other relevant information.
+\end{tcolorbox}
+\subsection{CORE 5}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c}
+    SPEC & (px) \\
+    \hline
+         NPT & 10 \\
+         ND & 20 \\
+         MNS & 50 \\
+         NED & 4 \\
+         CMPT & 50 \\
+    \hline
+    \end{tabular}
+    \caption{MTU C5 Segmentation Specifications}
+\end{table}
+
+
+\begin{tcolorbox}[colback=gray!10]
+    \textbf{Notes:} 
+\end{tcolorbox}
+\end{document}
